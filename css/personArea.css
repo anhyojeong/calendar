@@ -1,0 +1,46 @@
+:root{
+    /*색*/
+    --gray:rgb(114, 117, 117);
+
+    /*투명도*/
+    --opacity : 0.6;
+
+    /*크기*/
+    --margin: 24px;
+    --padding: 12px;
+
+    /*글자크기*/
+    --small: 15px;
+    --medium: 20px;
+    --large: 24px;
+}
+
+#personArea #inputArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*메세지*/
+#message{
+    font-size: small;
+    color: var(--gray);
+    margin: calc(var(--margin)/4);
+}
+
+/*이름 입력*/
+input{
+    border: 0;
+    border-bottom: 0.2px solid var(--gray);
+}
+button{
+    font-size: small;
+}
+
+#savedPeopleArea{
+    margin-top: calc(var(--margin)/2);
+}
+
+.savedPersonName span {
+    border-radius: 50%;
+    margin-bottom: calc(var(--margin) / 2);
+  }

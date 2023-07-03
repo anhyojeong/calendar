@@ -1,6 +1,6 @@
 const React = require('react');
 const {useState, useEffect} = require('react');
-require('./calendar.css');
+require('./css/calendar.css');
 
 
 const Body = ({ currentDate }) => {

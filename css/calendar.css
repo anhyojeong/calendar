@@ -21,8 +21,8 @@
 
 .calendar{
     display: flex;
-  flex-direction: column;
-  align-items: center;
+    flex-direction: column;
+     align-items: center;
 }
 
 .header{
@@ -83,7 +83,6 @@ button{
     width: calc(100% / 7);
     padding-bottom: calc(var(--padding)*3);
     text-align: left;
-
     box-sizing: border-box;
 }
 
