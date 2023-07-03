@@ -10,6 +10,14 @@ const PersonAdd = ()=>{
     const { data, saveData } = LoadPeople({ initialDataKey: 'people' });
     const colors = ['#D2D0F7', '#B2D4D1', '#D9EBD1', '#D4CCB2', '#DB7093	'];
     
+    useEffect(() => {
+        // 로컬스토리지에서 저장된 사람들의 정보를 가져옴
+        const savedPeople = localStorage.getItem('people');
+        if (savedPeople) {
+          setPeople(JSON.parse(savedPeople));
+        }
+      }, []);
+      
     // people 상태가 변경될 때마다 로컬스토리지에 저장
       useEffect(() => {
         localStorage.setItem('people', JSON.stringify(people));
@@ -69,6 +77,7 @@ const PersonAdd = ()=>{
                     id ='personName' 
                     type='text' 
                     name='name'
+                    placeholder='본인 이름을 입력해주세요'
                     value={personName}
                     onChange={e=>setPersonName(e.target.value)}
                 />

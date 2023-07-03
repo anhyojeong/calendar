@@ -49,7 +49,6 @@
 }
 
 button{
-    font-size: var(--medium);
     display:inline-block;
     border: none;
     background-color: white;

@@ -10,6 +10,7 @@
     --padding: 12px;
 
     /*글자크기*/
+    --micro: 12px;
     --small: 15px;
     --medium: 20px;
     --large: 24px;
@@ -20,27 +21,46 @@
     justify-content: center;
     align-items: center;
 }
-/*메세지*/
+button{
+    font-size: var(--micro);
+}
+
+/*신규 이름 입력*/
+#inputArea label{
+    font-size: var(--small);
+}
+#inputArea input{
+    border: 0;
+    border-bottom: 0.2px solid var(--gray);
+    text-align: center;
+    margin-left: calc(var(--margin)/2);
+}
+
+/*안내 메세지*/
 #message{
     font-size: small;
     color: var(--gray);
     margin: calc(var(--margin)/4);
 }
 
-/*이름 입력*/
-input{
-    border: 0;
-    border-bottom: 0.2px solid var(--gray);
-}
-button{
-    font-size: small;
-}
-
-#savedPeopleArea{
+/*기존 사람들 이름 구역*/
+#savedPeopleArea{ 
     margin-top: calc(var(--margin)/2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
+/*기존 사람들 이름 리스트*/
+.savedPersonName{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: calc(var(--margin)/2);
+}
 .savedPersonName span {
     border-radius: 50%;
-    margin-bottom: calc(var(--margin) / 2);
-  }
+}
+.removeBtn {
+    color: var(--gray);
+}
