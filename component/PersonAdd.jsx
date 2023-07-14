@@ -1,14 +1,14 @@
 const React = require('react');
 const {useState, useEffect} = require('react');
 const  {LoadPeople}  = require('./LoadPeople');
-require('./css/personArea.css');
+require('../css/personArea.css');
 
 const PersonAdd = ()=>{
     const [personName,setPersonName]=useState('');
     const [people, setPeople] = useState([]);
     const [message, setMessage] = useState('');
     const { data, saveData } = LoadPeople({ initialDataKey: 'people' });
-    const colors = ['#D2D0F7', '#B2D4D1', '#D9EBD1', '#D4CCB2', '#DB7093	'];
+    const colors = ['#D2D0F7', '#B2D4D1', '#D9EBD1', '#D4CCB2', '#DB7093'];
     
     useEffect(() => {
         // 로컬스토리지에서 저장된 사람들의 정보를 가져옴

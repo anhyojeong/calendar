@@ -1,11 +1,14 @@
 const React = require("react");
 const { useState, useEffect, useRef } = require("react");
-require("./css/calendar.css");
+const Modal = require('./Modal');
+require("../css/calendar.css");
 
 const Body = ({ currentDate }) => {
   const [selectedDays, setSelectedDays] = useState([]);
   const [isDragging, setIsDragging] = useState(false); //드래그 여부
   const [startDay, setStartDay] = useState(null); //드래그 시작 날짜 저장
+  const [isModalOpen, setIsModalOpen] = useState(false); //모달창
+  const [modalDate, setModalDate] = useState(null); // 모달에 전달할 선택한 날짜
   const dragRef = useRef(null); //드래그할 요소 참조 저장
 
   useEffect(() => {
@@ -49,39 +52,22 @@ const Body = ({ currentDate }) => {
       currentMonth - 1 + monthOffset,
       day
     );
-    const selectedIndex = selectedDays.findIndex(
-      (date) => date.toISOString() === selectedDate.toISOString()
-    ); // Date 객체 비교
-    let updatedSelectedDays = [];
-    if (selectedIndex > -1) {
-      updatedSelectedDays = selectedDays.filter(
-        (date) => date.toISOString() !== selectedDate.toISOString()
-      ); // Date 객체 비교
-    } else {
-      updatedSelectedDays = [...selectedDays, selectedDate];
-    }
-    setSelectedDays(updatedSelectedDays);
 
-    const selectedDates = updatedSelectedDays.map((date) => {
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, "0");
-      const day = date.getDate().toString().padStart(2, "0");
-      return `${year}년 ${month}월 ${day}일`;
-    });
+    setModalDate(selectedDate);
 
-    localStorage.setItem("selectedDates", JSON.stringify(selectedDates));
+    //모달창열기
+    setIsModalOpen(true);
+    
   };
 
   //날짜 드래그 시작 했을 때
   const handleDragStart = (day) => {
-    console.log("드래그 시작" + day);
     setIsDragging(!isDragging);
     setStartDay(day);
   };
 
   //드래그 중
   const handleDrag = (day) => {
-    console.log("드래그" + day);
     if (!isDragging) return;
 
     const startDate = startDay < day ? startDay : day;
@@ -105,7 +91,7 @@ const Body = ({ currentDate }) => {
       const year = date.getFullYear();
       const month = (date.getMonth() + 1).toString().padStart(2, "0");
       const day = date.getDate().toString().padStart(2, "0");
-      return `${year}년 ${month}월 ${day}일`;
+      return `${year}-${month}-${day}`;
     });
 
     localStorage.setItem("selectedDates", JSON.stringify(selectedDates));
@@ -113,9 +99,9 @@ const Body = ({ currentDate }) => {
 
   //드래그 끝
   const handleDragStop = () => {
-    console.log("드래그 끝");
     setIsDragging(false);
     setStartDay(null);
+
   };
 
   //지난 달 날짜 표시
@@ -198,6 +184,12 @@ const Body = ({ currentDate }) => {
         {renderCurrentDays()}
         {renderNextDays()}
       </div>
+      {isModalOpen && (
+        <Modal 
+          closeModal={() => setIsModalOpen(false)} 
+          selectedDate={modalDate} 
+        />
+      )}
     </div>
   );
 };
