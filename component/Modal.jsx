@@ -1,6 +1,7 @@
 const React = require("react");
 const { useState, useEffect } = require("react");
 const { LoadPeople } = require("./LoadStorage");
+require("../css/modal.css");
 
 const Modal = ({ closeModal, selectedDate }) => {
   const [dates, setDates] = useState([]);
@@ -49,33 +50,34 @@ const Modal = ({ closeModal, selectedDate }) => {
   };
 
   return (
-    <div className="modal">
-      <span className="close" onClick={closeModal}>
-        &times;
-      </span>
-      <div>
-        선택한 날짜:{" "}
-        {dates && dates.length === 1 ? (
-          <p>{dates[0]?.toLocaleDateString()}</p>
-        ) : (
-          <p>
-            {dates[0]?.toLocaleDateString()} ~
-            {dates[dates.length - 1]?.toLocaleDateString()}
-          </p>
-        )}
-      </div>
-      <form onSubmit={handleSubmit}>
+    <div className="modalContainer">
+      <div id ="modal">
+        <div id ="modalHead">
+          {dates && dates.length === 1 ? (
+            <p>{dates[0]?.toLocaleDateString()}</p>
+          ) : (
+            <p>
+              {dates[0]?.toLocaleDateString()} ~
+              {dates[dates.length - 1]?.toLocaleDateString()}
+            </p>
+          )}
+            <span className="close" onClick={closeModal}>
+            &times;
+          </span>
+        </div>
+      <form id ="modalForm"onSubmit={handleSubmit}>
         <div>
           <label htmlFor="nameInput">이름:</label>
           <input
             type="text"
-            id="nameInput"
+            placeholder="이름 입력 후 추가를 눌러주세요 "
             value={name}
             onChange={handleNameChange}
           />
         </div>
-        <button type="submit">확인</button>
+        <button type="submit">추가</button>
       </form>
+      </div>
     </div>
   );
 };
