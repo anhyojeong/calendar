@@ -1,6 +1,6 @@
 const React = require('react');
 const {useState, useEffect} = require('react');
-const  {LoadPeople}  = require('./LoadPeople');
+const  {LoadPeople}  = require('./LoadStorage');
 require('../css/personArea.css');
 
 const PersonAdd = ()=>{

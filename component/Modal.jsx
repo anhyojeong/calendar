@@ -1,22 +1,22 @@
 const React = require("react");
 const { useState, useEffect } = require("react");
-const { LoadPeople } = require("./LoadPeople");
+const { LoadPeople } = require("./LoadStorage");
 
 const Modal = ({ closeModal, selectedDate }) => {
-  const [date,setDate] = useState([]);
+  const [dates, setDates] = useState([]);
   const [name, setName] = useState("");
 
-  const { data: people, saveData } = LoadPeople({ initialDataKey: "userData" });
-  const { data: currentIndex, saveData: saveCurrentIndex } = LoadPeople({ initialDataKey: "currentIndex" });
-  
-  const month = selectedDate.getMonth()+1;
-  const day = selectedDate.getDate();
+  const { data, saveData } = LoadPeople({ initialDataKey: "userDataAndIndex" });
+  const userData = data.userData;
+  const currentIndex = data.currentIndex;
   const colors = ["#D2D0F7", "#B2D4D1", "#D9EBD1", "#D4CCB2", "#DB7093"];
 
-  //선택된 날짜 
-  useEffect(()=>{
-    setDate(selectedDate);
-  },[])
+  //선택된 날짜
+  useEffect(() => {
+    if (selectedDate && selectedDate.length > 0) {
+      setDates([...selectedDate]);
+    }
+  }, [selectedDate]);
 
   //이름 입력할 때
   const handleNameChange = (event) => {
@@ -37,15 +37,14 @@ const Modal = ({ closeModal, selectedDate }) => {
     const newPerson = {
       name: name,
       color: assignColor(),
-      date: date,
+      date: dates,
     };
 
-    //새로운 사람 저장
-    saveData([...people, newPerson]);
-
-    //currentIndex 저장
-    saveCurrentIndex(currentIndex + 1);
-
+    // 새로운 사람 저장
+    saveData({
+      userData: [...userData, newPerson],
+      currentIndex: currentIndex + 1,
+    });
     closeModal();
   };
 
@@ -54,9 +53,17 @@ const Modal = ({ closeModal, selectedDate }) => {
       <span className="close" onClick={closeModal}>
         &times;
       </span>
-      <p>
-        선택한 날짜: {month}월 {day}일
-      </p>
+      <div>
+        선택한 날짜:{" "}
+        {dates && dates.length === 1 ? (
+          <p>{dates[0]?.toLocaleDateString()}</p>
+        ) : (
+          <p>
+            {dates[0]?.toLocaleDateString()} ~
+            {dates[dates.length - 1]?.toLocaleDateString()}
+          </p>
+        )}
+      </div>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="nameInput">이름:</label>

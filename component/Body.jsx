@@ -8,7 +8,6 @@ const Body = ({ currentDate }) => {
   const [isDragging, setIsDragging] = useState(false); //드래그 여부
   const [startDay, setStartDay] = useState(null); //드래그 시작 날짜 저장
   const [isModalOpen, setIsModalOpen] = useState(false); //모달창
-  const [modalDate, setModalDate] = useState(null); // 모달에 전달할 선택한 날짜
   const dragRef = useRef(null); //드래그할 요소 참조 저장
 
   useEffect(() => {
@@ -36,13 +35,6 @@ const Body = ({ currentDate }) => {
 
   useEffect(() => {
     setSelectedDays([]);
-    const savedDates = localStorage.getItem("selectedDates");
-    if (savedDates) {
-      const parsedDates = JSON.parse(savedDates);
-      console.log("Selected Dates:", parsedDates);
-      setSelectedDays(parsedDates.map((dateString) => new Date(dateString))); // Date 객체로 변환
-      // 저장된 날짜를 화면에 표시하는 로직 또는 필요한 곳에서 사용
-    }
   }, [currentDate]);
 
   // 날짜를 클릭 했을 때
@@ -50,14 +42,10 @@ const Body = ({ currentDate }) => {
     const selectedDate = new Date(
       currentYear,
       currentMonth - 1 + monthOffset,
-      day
+      day,
     );
-
-    setModalDate(selectedDate);
-
-    //모달창열기
+    setSelectedDays([selectedDate]);
     setIsModalOpen(true);
-    
   };
 
   //날짜 드래그 시작 했을 때
@@ -87,14 +75,6 @@ const Body = ({ currentDate }) => {
 
     setSelectedDays(daysInRange);
 
-    const selectedDates = daysInRange.map((date) => {
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, "0");
-      const day = date.getDate().toString().padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    });
-
-    localStorage.setItem("selectedDates", JSON.stringify(selectedDates));
   };
 
   //드래그 끝
@@ -102,6 +82,10 @@ const Body = ({ currentDate }) => {
     setIsDragging(false);
     setStartDay(null);
 
+    if (selectedDays.length > 0) {
+      setIsModalOpen(true);
+    }
+    
   };
 
   //지난 달 날짜 표시
@@ -187,7 +171,7 @@ const Body = ({ currentDate }) => {
       {isModalOpen && (
         <Modal 
           closeModal={() => setIsModalOpen(false)} 
-          selectedDate={modalDate} 
+          selectedDate={selectedDays} 
         />
       )}
     </div>
