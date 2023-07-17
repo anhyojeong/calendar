@@ -1,100 +1,100 @@
-:root{
-    /*색*/
-    --gray:rgb(114, 117, 117);
+:root {
+  /*색*/
+  --gray: rgb(114, 117, 117);
 
-    /*투명도*/
-    --opacity : 0.6;
+  /*투명도*/
+  --opacity: 0.6;
 
-    /*크기*/
-    --margin: 24px;
-    --padding: 12px;
+  /*크기*/
+  --margin: 24px;
+  --padding: 12px;
 
-    /*글자크기*/
-    --small: 15px;
-    --medium: 20px;
-    --large: 24px;
+  /*글자크기*/
+  --small: 15px;
+  --medium: 20px;
+  --large: 24px;
 }
 
-*{
-    font-family: 'Noto Sans KR', sans-serif;
+* {
+  font-family: "Noto Sans KR", sans-serif;
 }
 
-.calendar{
-    display: flex;
-    flex-direction: column;
-     align-items: center;
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.header{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    align-items: center;
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
 }
 
-#yearArea{
-    width: 100%;
-    text-align: center;
-    margin-bottom: var(--margin);
-    font-size: var(--small);
+#yearArea {
+  width: 100%;
+  text-align: center;
+  margin-bottom: var(--margin);
+  font-size: var(--small);
 }
 
-#monthArea{
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: var(--margin);
-    font-size: var(--medium);
+#monthArea {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: var(--margin);
+  font-size: var(--medium);
 }
 
-button{
-    display:inline-block;
-    border: none;
-    background-color: white;
+button {
+  display: inline-block;
+  border: none;
+  background-color: white;
 }
-.body{
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
+.body {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
 }
-.weeks{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-bottom: var(--padding);
-    border-bottom: 0.2px solid var(--gray);
-}
-
-.weeks span{
-    width: calc(100% / 7);
+.weeks {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-bottom: var(--padding);
+  border-bottom: 0.2px solid var(--gray);
 }
 
-.days{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-top: calc(var(--padding)/2);
+.weeks span {
+  width: calc(100% / 7);
 }
 
-.day{
-    width: calc(100% / 7);
-    padding-bottom: calc(var(--padding)*3);
-    text-align: left;
-    box-sizing: border-box;
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: calc(var(--padding) / 2);
 }
 
-.notCurrentDays{
-    color: var(--gray) ;
-    opacity: var(--opacity);
+.day {
+  width: calc(100% / 7);
+  padding-bottom: calc(var(--padding) * 3);
+  text-align: left;
+  box-sizing: border-box;
 }
 
-.selected{
-    background-color: rgb(245, 235, 186);
+.notCurrentDays {
+  color: var(--gray);
+  opacity: var(--opacity);
 }
 
-.line{
-    margin-bottom: 2px;
-    border-radius: 4px;
+.selected {
+  background-color: rgb(245, 235, 186);
+}
+
+.line {
+  margin-bottom: 2px;
+  border-radius: 4px;
 }

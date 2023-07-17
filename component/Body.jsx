@@ -2,6 +2,8 @@ const React = require("react");
 const { useState, useEffect, useRef } = require("react");
 const Modal = require("./Modal");
 const { LoadStorage } = require("./LoadStorage");
+const PersonAdd = require("./PersonAdd");
+
 require("../css/calendar.css");
 
 const Body = ({ currentDate }) => {
@@ -22,17 +24,10 @@ const Body = ({ currentDate }) => {
 
   // 로컬스토리지에서 저장된 정보를 가져옴
   useEffect(() => {
-    const loadSavedData = localStorage.getItem("userDataAndIndex");
-    if (loadSavedData) {
-      /* console.log(JSON.stringify(JSON.parse(loadSavedData)));
-           // 스토리지에 있는 데이터를 문자열로 바꾸고 객체로 다시 변환 
-           setSavedData(JSON.stringify(JSON.parse(loadSavedData))); */
-      const parsedData = JSON.parse(loadSavedData);
-      setSavedData(parsedData);
+    if (data.userData) {
+      setSavedData(data);
     }
-  }, []);
-
-  console.log(savedData + "!!");
+  }, [data.userData]);
 
   //요일 표시
   const weeks = ["일", "월", "화", "수", "목", "금", "토"];
@@ -256,6 +251,7 @@ const Body = ({ currentDate }) => {
           selectedDate={selectedDays}
         />
       )}
+      <PersonAdd />
     </div>
   );
 };
