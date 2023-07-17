@@ -3,7 +3,7 @@ const { useState, useEffect } = require("react");
 const { LoadStorage } = require("./LoadStorage");
 require("../css/personArea.css");
 
-const PersonAdd = () => {
+const LoadSavedPeople = () => {
   const [people, setPeople] = useState([]);
   const { data, saveData } = LoadStorage({
     initialDataKey: "userDataAndIndex",
@@ -29,4 +29,4 @@ const PersonAdd = () => {
   );
 };
 
-module.exports = PersonAdd;
+module.exports = LoadSavedPeople;

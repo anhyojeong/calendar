@@ -1,7 +1,7 @@
 const React = require('react');
 const {useState} = React;
 const Body = require('./component/Body');
-const PersonAdd = require('./component/PersonAdd');
+const LoadSavedPeople = require('./component/LoadSavedPeople');
 require('./css/calendar.css');
 
 const Header = () =>{
@@ -32,7 +32,7 @@ const Header = () =>{
                 </div>
             </div>
             <Body currentDate={currentDate}/>
-            
+            <LoadSavedPeople />
         </div>
     );
 

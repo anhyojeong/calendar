@@ -2,7 +2,6 @@ const React = require("react");
 const { useState, useEffect, useRef } = require("react");
 const Modal = require("./Modal");
 const { LoadStorage } = require("./LoadStorage");
-const PersonAdd = require("./PersonAdd");
 
 require("../css/calendar.css");
 
@@ -251,7 +250,7 @@ const Body = ({ currentDate }) => {
           selectedDate={selectedDays}
         />
       )}
-      <PersonAdd />
+
     </div>
   );
 };

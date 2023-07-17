@@ -12,7 +12,7 @@ const Modal = ({ closeModal, selectedDate }) => {
   });
   const userData = data.userData;
   const currentIndex = data.currentIndex;
-  const colors = ["#D2D0F7", "#B2D4D1", "#D9EBD1", "#D4CCB2", "#DB7093"];
+  const colors = ["#D2D0F7", "#B2D4D1", "#D9EBD1", "#D4CCB2", "#DB7093","#A1CCD1", "#E9B384", "#7C9D96"];
 
   //선택된 날짜
   useEffect(() => {
@@ -36,18 +36,30 @@ const Modal = ({ closeModal, selectedDate }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    //이름과 날짜를 객체로 묶어 로컬 스토리지에 저장
-    const newPerson = {
-      name: name,
-      color: assignColor(),
-      date: dates,
-    };
-
-    // 새로운 사람 저장
-    saveData({
-      userData: [...userData, newPerson],
-      currentIndex: currentIndex + 1,
-    });
+    // userData 배열에서 이름이 이미 존재하는지 확인
+    const existingPersonIndex = userData.findIndex((person) => person.name === name);
+  
+    if (existingPersonIndex !== -1) {
+      // 이름이 있으면 업데이트
+      const updatedUserData = [...userData];
+      const existingPerson = updatedUserData[existingPersonIndex];
+      existingPerson.date = [...existingPerson.date, ...dates]; //날짜 추가
+      saveData({ userData: updatedUserData });
+    } else {
+      // 이름이 없으면 새로운 객체 생성
+      const newPerson = {
+        name: name,
+        color: assignColor(),
+        date: dates,
+      };
+  
+      // 새로운 사람 추가 
+      saveData({
+        userData: [...userData, newPerson],
+        currentIndex: currentIndex + 1,
+      });
+    }
+  
     closeModal();
   };
 
