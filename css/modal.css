@@ -1,23 +1,23 @@
-:root{
-    /*색*/
-    --gray:rgb(114, 117, 117);
+:root {
+  /*색*/
+  --gray: rgb(114, 117, 117);
 
-    /*투명도*/
-    --opacity : 0.6;
+  /*투명도*/
+  --opacity: 0.6;
 
-    /*크기*/
-    --margin: 24px;
-    --padding: 12px;
+  /*크기*/
+  --margin: 24px;
+  --padding: 12px;
 
-    /*글자크기*/
-    --micro: 12px;
-    --small: 15px;
-    --medium: 20px;
-    --large: 24px;
+  /*글자크기*/
+  --micro: 12px;
+  --small: 15px;
+  --medium: 20px;
+  --large: 24px;
 }
 
-.modalContainer{
-    position: fixed;
+.modalContainer {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -28,34 +28,34 @@
   justify-content: center;
   align-items: center;
 }
-#modal{
-    position: absolute;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+#modal {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 }
-#modalHead{
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+#modalHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
-#modalHead p{
-    margin-left: var(--margin);
+#modalHead p {
+  margin-left: var(--margin);
 }
-#modalHead span{
-    margin: var(--margin);
+#modalHead span {
+  margin: var(--margin);
 }
-#modalForm{
-    margin: var(--margin);
-    display: flex;
-    justify-content: space-around;
+#modalForm {
+  margin: var(--margin);
+  display: flex;
+  justify-content: space-around;
 }
-#modalForm label{
-    font-size: var(--small);
-    padding-right: var(--padding);
+#modalForm label {
+  font-size: var(--small);
+  padding-right: var(--padding);
 }
-#modalForm input{
-    border: 0;
-    border-bottom: 0.2px solid var(--gray);
-    text-align: center;
+#modalForm input {
+  border: 0;
+  border-bottom: 0.2px solid var(--gray);
+  text-align: center;
 }

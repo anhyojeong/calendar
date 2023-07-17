@@ -93,3 +93,8 @@ button{
 .selected{
     background-color: rgb(245, 235, 186);
 }
+
+.line{
+    margin-bottom: 2px;
+    border-radius: 4px;
+}

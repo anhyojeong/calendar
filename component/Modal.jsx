@@ -1,13 +1,13 @@
 const React = require("react");
 const { useState, useEffect } = require("react");
-const { LoadPeople } = require("./LoadStorage");
+const { LoadStorage } = require("./LoadStorage");
 require("../css/modal.css");
 
 const Modal = ({ closeModal, selectedDate }) => {
   const [dates, setDates] = useState([]);
   const [name, setName] = useState("");
 
-  const { data, saveData } = LoadPeople({ initialDataKey: "userDataAndIndex" });
+  const { data, saveData } = LoadStorage({ initialDataKey: "userDataAndIndex" });
   const userData = data.userData;
   const currentIndex = data.currentIndex;
   const colors = ["#D2D0F7", "#B2D4D1", "#D9EBD1", "#D4CCB2", "#DB7093"];

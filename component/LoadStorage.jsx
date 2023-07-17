@@ -1,7 +1,7 @@
 const React = require("react");
 const { useState, useEffect } = require("react");
 
-const LoadPeople = ({ initialDataKey }) => {
+const LoadStorage = ({ initialDataKey }) => {
   const [data, setData] = useState({ userData: [], currentIndex: 0 });
 
   useEffect(() => {
@@ -22,4 +22,4 @@ const LoadPeople = ({ initialDataKey }) => {
   return { data, saveData };
 };
 
-export { LoadPeople };
+export { LoadStorage };
