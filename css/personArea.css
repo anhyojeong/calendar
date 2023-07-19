@@ -1,66 +1,66 @@
-:root{
-    /*색*/
-    --gray:rgb(114, 117, 117);
+:root {
+  /*색*/
+  --gray: rgb(114, 117, 117);
 
-    /*투명도*/
-    --opacity : 0.6;
+  /*투명도*/
+  --opacity: 0.6;
 
-    /*크기*/
-    --margin: 24px;
-    --padding: 12px;
+  /*크기*/
+  --margin: 24px;
+  --padding: 12px;
 
-    /*글자크기*/
-    --micro: 12px;
-    --small: 15px;
-    --medium: 20px;
-    --large: 24px;
+  /*글자크기*/
+  --micro: 12px;
+  --small: 15px;
+  --medium: 20px;
+  --large: 24px;
 }
 
-#personArea #inputArea{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#personArea #inputArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-button{
-    font-size: var(--micro);
+button {
+  font-size: var(--micro);
 }
 
 /*신규 이름 입력*/
-#inputArea label{
-    font-size: var(--small);
+#inputArea label {
+  font-size: var(--small);
 }
-#inputArea input{
-    border: 0;
-    border-bottom: 0.2px solid var(--gray);
-    text-align: center;
-    margin-left: calc(var(--margin)/2);
+#inputArea input {
+  border: 0;
+  border-bottom: 0.2px solid var(--gray);
+  text-align: center;
+  margin-left: calc(var(--margin) / 2);
 }
 
 /*안내 메세지*/
-#message{
-    font-size: small;
-    color: var(--gray);
-    margin: calc(var(--margin)/4);
+#message {
+  font-size: small;
+  color: var(--gray);
+  margin: calc(var(--margin) / 4);
 }
 
 /*기존 사람들 이름 구역*/
-#savedPeopleArea{ 
-    margin-top: calc(var(--margin)/2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#savedPeopleArea {
+  margin-top: calc(var(--margin) / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /*기존 사람들 이름 리스트*/
-.savedPersonName{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: calc(var(--margin)/2);
+.savedPersonName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: calc(var(--margin) / 2);
 }
 .savedPersonName span {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 .removeBtn {
-    color: var(--gray);
+  color: var(--gray);
 }

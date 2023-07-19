@@ -250,7 +250,6 @@ const Body = ({ currentDate }) => {
           selectedDate={selectedDays}
         />
       )}
-
     </div>
   );
 };
