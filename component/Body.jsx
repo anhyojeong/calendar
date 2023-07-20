@@ -96,30 +96,26 @@ const Body = ({ currentDate }) => {
     }
   };
 
-  //지난 달 날짜 표시
-  const renderPrevDays = () => {
-    const reversedPrevDays = prevDays.slice().reverse();
-    return reversedPrevDays.map((day, index) => {
-      const prevMonthDate = new Date(currentYear, currentMonth - 2, day);
+  const renderDays = (days, monthOffset) => {
+    return days.map((day, index) => {
+      const date = new Date(currentYear, currentMonth - 1 + monthOffset, day);
       const isDateSelected = selectedDays.some(
-        (date) => date.getTime() === prevMonthDate.getTime()
+        (selectedDate) => selectedDate.getTime() === date.getTime()
       );
 
-      // 배열이 정의되었는지 확인하고, 비어있지 않은 경우에만 filter 함수 호출
-      const matchingUserDatas =
-        savedData.userData &&
-        savedData.userData.filter((userData) =>
-          userData.date.some((date) => {
-            const storedDate = new Date(date);
-            return storedDate.getTime() === prevMonthDate.getTime();
-          })
-        );
+      const matchingUserDatas = data.userData?.filter((userData) =>
+        userData.date.some(
+          (storedDate) => new Date(storedDate).getTime() === date.getTime()
+        )
+      );
 
       return (
         <div
-          className={`day notCurrentDays ${isDateSelected ? "selected" : ""}`}
-          key={`prev-${index}`}
-          onClick={() => handleDayClick(day, -1)} // monthOffset -1로 설정
+          className={`day ${monthOffset !== 0 ? "notCurrentDays" : ""} ${
+            isDateSelected ? "selected" : ""
+          }`}
+          key={`day-${monthOffset}-${index}`}
+          onClick={() => handleDayClick(day, monthOffset)}
           onMouseDown={() => handleDragStart(day)}
           onMouseUp={handleDragStop}
           onMouseOver={() => handleDrag(day)}
@@ -128,105 +124,10 @@ const Body = ({ currentDate }) => {
           {matchingUserDatas &&
             matchingUserDatas.map((matchingUserData, innerIndex) => {
               const color = matchingUserData ? matchingUserData.color : null;
-
               return (
                 <div
-                  key={`inner-${innerIndex}`}
-                  className="line"
-                  style={{ borderBottom: color ? `10px solid ${color}` : "" }}
-                ></div>
-              );
-            })}
-        </div>
-      );
-    });
-  };
-
-  //해당 달 날짜 표시
-  const renderCurrentDays = () => {
-    return currentDays.map((day, index) => {
-      const currentDate = new Date(currentYear, currentMonth - 1, day);
-      const isDateSelected = selectedDays.some(
-        (date) => date.getTime() === currentDate.getTime()
-      );
-
-      // 배열이 정의되었는지 확인하고, 비어있지 않은 경우에만 filter 함수 호출
-      const matchingUserDatas =
-        savedData.userData &&
-        savedData.userData.filter((userData) =>
-          userData.date.some((date) => {
-            const storedDate = new Date(date);
-            return storedDate.getTime() === currentDate.getTime();
-          })
-        );
-
-      return (
-        <div
-          className={`day ${isDateSelected ? "selected" : ""}`}
-          key={`current-${index}`}
-          onClick={() => handleDayClick(day, 0)}
-          onMouseDown={() => handleDragStart(day)}
-          onMouseUp={handleDragStop}
-          onMouseOver={() => handleDrag(day)}
-        >
-          {day}
-          {matchingUserDatas &&
-            matchingUserDatas.map((matchingUserData, innerIndex) => {
-              const color = matchingUserData ? matchingUserData.color : null;
-
-              return (
-                <div
-                  key={`inner-${innerIndex}`}
+                  key={`inner-${monthOffset}-${index}-${innerIndex}`}
                   ref={dragRef}
-                  className="line"
-                  style={{ borderBottom: color ? `10px solid ${color}` : "" }}
-                ></div>
-              );
-            })}
-        </div>
-      );
-    });
-  };
-
-  //다음 달 날짜 표시
-  const renderNextDays = () => {
-    return nextDays.map((day, index) => {
-      const nextMonthDate = new Date(currentYear, currentMonth, day);
-      const isDateSelected = selectedDays.some(
-        (date) => date.getTime() === nextMonthDate.getTime()
-      );
-
-      // 배열이 정의되었는지 확인하고, 비어있지 않은 경우에만 filter 함수 호출
-      const matchingUserDatas =
-        savedData.userData &&
-        savedData.userData.filter((userData) =>
-          userData.date.some((date) => {
-            const storedDate = new Date(date);
-            return storedDate.getTime() === nextMonthDate.getTime();
-          })
-        );
-
-      return (
-        <div
-          className={`day notCurrentDays ${isDateSelected ? "selected" : ""}`}
-          key={`next-${index}`}
-          onClick={() => handleDayClick(day, +1)} // monthOffset -1로 설정
-          onMouseDown={() => handleDragStart(day)}
-          onMouseUp={handleDragStop}
-          onMouseOver={() => handleDrag(day)}
-        >
-          {day}
-          {matchingUserDatas &&
-            matchingUserDatas.map((matchingUserData, innerIndex) => {
-              const color = matchingUserData ? matchingUserData.color : null;
-
-              return (
-                <div
-                  key={`inner-${innerIndex}`}
-                  onClick={() => handleDayClick(day, +1)} // monthOffset -1로 설정
-                  onMouseDown={() => handleDragStart(day)}
-                  onMouseUp={handleDragStop}
-                  onMouseOver={() => handleDrag(day)}
                   className="line"
                   style={{ borderBottom: color ? `10px solid ${color}` : "" }}
                 ></div>
@@ -241,9 +142,9 @@ const Body = ({ currentDate }) => {
     <div className="body">
       <div className="weeks">{displayWeeks}</div>
       <div className="days">
-        {renderPrevDays()}
-        {renderCurrentDays()}
-        {renderNextDays()}
+        {renderDays([...prevDays].reverse(), -1)}
+        {renderDays(currentDays, 0)}
+        {renderDays(nextDays, 1)}
       </div>
       {isModalOpen && (
         <Modal
