@@ -98,10 +98,7 @@ const Body = ({ currentDate }) => {
 
   //지난 달 날짜 표시
   const renderPrevDays = () => {
-    console.log(prevDays);
     const reversedPrevDays = prevDays.slice().reverse();
-    console.log(reversedPrevDays);
-    
     return reversedPrevDays.map((day, index) => {
       const prevMonthDate = new Date(currentYear, currentMonth - 2, day);
       const isDateSelected = selectedDays.some(
