@@ -4,14 +4,12 @@ const { useState, useEffect } = require("react");
 const LoadStorage = ({ initialDataKey }) => {
   const [data, setData] = useState({ userData: [], currentIndex: 0 });
 
-  //const LoadData =() =>{
     useEffect(() => {
       const savedData = localStorage.getItem(initialDataKey);
       if (savedData) {
         setData(JSON.parse(savedData));
       }
     }, [initialDataKey]);
-  //};
  
 
   const saveData = (newData) => {

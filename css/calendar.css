@@ -78,6 +78,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  height: auto;
   padding-top: calc(var(--padding) / 2);
 }
 
