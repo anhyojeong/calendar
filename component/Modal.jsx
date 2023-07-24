@@ -3,7 +3,7 @@ const { useState, useEffect } = require("react");
 const { LoadStorage } = require("./LoadStorage");
 require("../css/modal.css");
 
-const Modal = ({ closeModal, selectedDate,setNullSelectedDays}) => {
+const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
   const [dates, setDates] = useState([]);
   const [name, setName] = useState("");
   const { data, saveData } = LoadStorage({
@@ -28,8 +28,16 @@ const Modal = ({ closeModal, selectedDate,setNullSelectedDays}) => {
       setDates([...selectedDate]);
     }
   }, [selectedDate]);
+  console.log("selectedDate : " + selectedDate);
 
-
+  // 날짜 포맷화 함수
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}. ${month}. ${day}`;
+  };
   //이름 입력할 때
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -49,6 +57,8 @@ const Modal = ({ closeModal, selectedDate,setNullSelectedDays}) => {
     const existingPersonIndex = userData.findIndex(
       (person) => person.name === name
     );
+    // 날짜를 UTC로 변환하여 저장
+    const utcDates = dates.map((date) => new Date(date).toISOString());
 
     if (existingPersonIndex !== -1) {
       // 이름이 있으면 업데이트
@@ -61,7 +71,7 @@ const Modal = ({ closeModal, selectedDate,setNullSelectedDays}) => {
       const newPerson = {
         name: name,
         color: assignColor(),
-        date: dates,
+        date: utcDates,
       };
 
       // 새로운 사람 추가
@@ -80,11 +90,10 @@ const Modal = ({ closeModal, selectedDate,setNullSelectedDays}) => {
       <div id="modal">
         <div id="modalHead">
           {dates && dates.length === 1 ? (
-            <p>{dates[0]?.toLocaleDateString()}</p>
+            <p>{formatDate(dates[0])}</p>
           ) : (
             <p>
-              {dates[0]?.toLocaleDateString()} ~
-              {dates[dates.length - 1]?.toLocaleDateString()}
+              {formatDate(dates[0])} ~ {formatDate(dates[dates.length - 1])}
             </p>
           )}
           <span className="close" onClick={closeModal}>

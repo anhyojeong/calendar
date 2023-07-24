@@ -26,12 +26,12 @@ const Body = ({ currentDate }) => {
       setSelectedDays([]);
     }
   }, [data.userData]);
-  
+
   //모달창 닫을 때
-  const handleCloseModal=()=>{
+  const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedDays([]);
-  }
+  };
 
   //요일 표시
   const weeks = ["일", "월", "화", "수", "목", "금", "토"];
@@ -46,7 +46,7 @@ const Body = ({ currentDate }) => {
 
   //이전 달 날짜들
   const prevDays = Array.from(
-    { length: firstDayOfMonth - 1 },
+    { length: firstDayOfMonth },
     (_, i) => daysOfPrevMonth - i
   );
   const currentDays = Array.from({ length: daysInMonth }, (_, i) => i + 1); //현재 달 날짜들
