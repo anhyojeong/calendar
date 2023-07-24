@@ -7,13 +7,12 @@ require("../css/calendar.css");
 
 const Body = ({ currentDate }) => {
   const [selectedDays, setSelectedDays] = useState([]);
-  const [savedData, setSavedData] = useState({});
   const [isDragging, setIsDragging] = useState(false); //드래그 여부
   const [startDay, setStartDay] = useState(null); //드래그 시작 날짜 저장
   const [isModalOpen, setIsModalOpen] = useState(false); //모달창
   const dragRef = useRef(null); //드래그할 요소 참조 저장
 
-  const { data, saveData } = LoadStorage({
+  const { data } = LoadStorage({
     initialDataKey: "userDataAndIndex",
   });
 
@@ -21,12 +20,18 @@ const Body = ({ currentDate }) => {
     setSelectedDays([]);
   }, [currentDate]);
 
-  // 로컬스토리지에서 저장된 정보를 가져옴
+  //로컬스토리지에서 저장된 정보를 가져옴
   useEffect(() => {
     if (data.userData) {
-      setSavedData(data);
+      setSelectedDays([]);
     }
   }, [data.userData]);
+  
+  //모달창 닫을 때
+  const handleCloseModal=()=>{
+    setIsModalOpen(false);
+    setSelectedDays([]);
+  }
 
   //요일 표시
   const weeks = ["일", "월", "화", "수", "목", "금", "토"];
@@ -39,13 +44,14 @@ const Body = ({ currentDate }) => {
   const firstDayOfMonth = new Date(currentYear, currentMonth - 1, 1).getDay();
   const daysOfPrevMonth = new Date(currentYear, currentMonth - 1, 0).getDate();
 
+  //이전 달 날짜들
   const prevDays = Array.from(
     { length: firstDayOfMonth - 1 },
     (_, i) => daysOfPrevMonth - i
   );
-  const currentDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  const currentDays = Array.from({ length: daysInMonth }, (_, i) => i + 1); //현재 달 날짜들
   const remainingCells = 35 - (prevDays.length + currentDays.length);
-  const nextDays = Array.from({ length: remainingCells }, (_, i) => i + 1);
+  const nextDays = Array.from({ length: remainingCells }, (_, i) => i + 1); //다음 달 날짜들
 
   // 날짜를 클릭 했을 때
   const handleDayClick = (day, monthOffset) => {
@@ -96,10 +102,11 @@ const Body = ({ currentDate }) => {
     }
   };
 
+  //날짜 렌더링
   const renderDays = (days, monthOffset) => {
     return days.map((day, index) => {
       const date = new Date(currentYear, currentMonth - 1 + monthOffset, day);
-      const isDateSelected = selectedDays.some(
+      const isDateSelected = selectedDays?.some(
         (selectedDate) => selectedDate.getTime() === date.getTime()
       );
 
@@ -129,7 +136,7 @@ const Body = ({ currentDate }) => {
                   key={`inner-${monthOffset}-${index}-${innerIndex}`}
                   ref={dragRef}
                   className="line"
-                  style={{ borderBottom: color ? `10px solid ${color}` : "" }}
+                  style={{ borderBottom: color ? `15px solid ${color}` : "" }}
                 ></div>
               );
             })}
@@ -142,14 +149,18 @@ const Body = ({ currentDate }) => {
     <div className="body">
       <div className="weeks">{displayWeeks}</div>
       <div className="days">
+        {/* 이전 달 */}
         {renderDays([...prevDays].reverse(), -1)}
+        {/* 현재 달 */}
         {renderDays(currentDays, 0)}
+        {/* 다음 달 */}
         {renderDays(nextDays, 1)}
       </div>
       {isModalOpen && (
         <Modal
-          closeModal={() => setIsModalOpen(false)}
+          closeModal={handleCloseModal}
           selectedDate={selectedDays}
+          setNullSelectedDays={() => setSelectedDays([])}
         />
       )}
     </div>

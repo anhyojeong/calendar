@@ -3,10 +3,9 @@ const { useState, useEffect } = require("react");
 const { LoadStorage } = require("./LoadStorage");
 require("../css/modal.css");
 
-const Modal = ({ closeModal, selectedDate }) => {
+const Modal = ({ closeModal, selectedDate,setNullSelectedDays}) => {
   const [dates, setDates] = useState([]);
   const [name, setName] = useState("");
-
   const { data, saveData } = LoadStorage({
     initialDataKey: "userDataAndIndex",
   });
@@ -29,6 +28,7 @@ const Modal = ({ closeModal, selectedDate }) => {
       setDates([...selectedDate]);
     }
   }, [selectedDate]);
+
 
   //이름 입력할 때
   const handleNameChange = (event) => {
@@ -72,6 +72,7 @@ const Modal = ({ closeModal, selectedDate }) => {
     }
 
     closeModal();
+    setNullSelectedDays();
   };
 
   return (
