@@ -38,6 +38,8 @@
 .savedPeopleNameList span {
   border-radius: 50%;
   margin-right: calc(var(--margin) / 2);
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  word-break: keep-all; /* 단어 단위로 끊지 않고 유지 */
 }
 
 /*일정 구역*/
@@ -58,4 +60,11 @@
 }
 #removeBtn {
   padding-left: var(--padding);
+}
+@media screen and (max-width: 768px){
+  .savedPeopleContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 }

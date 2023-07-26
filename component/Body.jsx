@@ -126,6 +126,17 @@ const Body = ({ currentDate }) => {
           onMouseDown={() => handleDragStart(day)}
           onMouseUp={handleDragStop}
           onMouseOver={() => handleDrag(day)}
+          onTouchStart={(e) => {
+            e.preventDefault(); // onClick 이벤트 실행을 방지
+            handleDayClick(day, monthOffset);
+          }}
+          onTouchMove={(e) => {
+            e.preventDefault(); // onClick 이벤트 실행을 방지
+            handleDragStart(day);
+          }}
+          onTouchEnd={(e) => {
+            handleDragStop(day);
+          }}
         >
           {day}
           {matchingUserDatas &&

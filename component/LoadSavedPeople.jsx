@@ -149,7 +149,7 @@ const LoadSavedPeople = () => {
         </div>
       )}
       {!selectedPerson && !isClicked && (
-        <p>이름을 누르면 일정을 볼 수 있어요</p>
+        <p id ="message">이름을 누르면 일정을 볼 수 있어요</p>
       )}
     </div>
   );
