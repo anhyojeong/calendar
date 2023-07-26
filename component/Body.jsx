@@ -1,7 +1,7 @@
 const React = require("react");
 const { useState, useEffect, useRef } = require("react");
 const Modal = require("./Modal");
-const { LoadStorage } = require("./LoadStorage");
+const { LoadStorage } = require("../hooks/LoadStorage");
 
 require("../css/calendar.css");
 

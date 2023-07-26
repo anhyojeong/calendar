@@ -1,6 +1,6 @@
 const React = require("react");
 const { useState, useEffect } = require("react");
-const { LoadStorage } = require("./LoadStorage");
+const { LoadStorage } = require("../hooks/LoadStorage");
 require("../css/modal.css");
 
 const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {

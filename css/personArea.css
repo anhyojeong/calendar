@@ -16,51 +16,46 @@
   --large: 24px;
 }
 
-#personArea #inputArea {
+/*이름 구역*/
+#savedPeopleContainer {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin:  calc(var(--margin) / 2) calc(var(--margin) / 2); 
+  height: 50px;
+}
+
+/*이름 리스트*/
+.savedPeopleNameList {
+  position: sticky;
+  top: 500px;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 0;
 }
-button {
-  font-size: var(--micro);
-}
-
-/*신규 이름 입력*/
-#inputArea label {
-  font-size: var(--small);
-}
-#inputArea input {
-  border: 0;
-  border-bottom: 0.2px solid var(--gray);
-  text-align: center;
-  margin-left: calc(var(--margin) / 2);
-}
-
-/*안내 메세지*/
-#message {
-  font-size: small;
-  color: var(--gray);
-  margin: calc(var(--margin) / 4);
-}
-
-/*기존 사람들 이름 구역*/
-#savedPeopleArea {
-  margin-top: calc(var(--margin) / 2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/*기존 사람들 이름 리스트*/
-.savedPersonName {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.savedPeopleNameList span {
+  border-radius: 50%;
   margin-right: calc(var(--margin) / 2);
 }
-.savedPersonName span {
-  border-radius: 50%;
+
+/*일정 구역*/
+.personScheduleContainer {
+  padding-left: var(--padding);
 }
-.removeBtn {
-  color: var(--gray);
+
+/*일정 주인*/
+#clickedPerson {
+  margin: calc(var(--margin) / 2) 0;
+}
+
+/*일정 리스트*/
+#clickedPersonSchedule {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+#removeBtn {
+  padding-left: var(--padding);
 }
