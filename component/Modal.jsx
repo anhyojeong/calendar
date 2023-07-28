@@ -1,7 +1,7 @@
-const React = require("react");
-const { useState, useEffect } = require("react");
-const { LoadStorage } = require("../hooks/LoadStorage");
-require("../css/modal.css");
+import React from "react";
+import {useState,useEffect } from "react";
+import { LoadStorage } from"../hooks/LoadStorage";
+import ("../css/modal.css");
 
 const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
   const [dates, setDates] = useState([]);
@@ -28,7 +28,6 @@ const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
       setDates([...selectedDate]);
     }
   }, [selectedDate]);
-  console.log("selectedDate : " + selectedDate);
 
   // 날짜 포맷화 함수
   const formatDate = (dateString) => {
@@ -101,20 +100,19 @@ const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
           </span>
         </div>
         <form id="modalForm" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="nameInput">이름:</label>
+          <div id ="modalNameArea">
             <input
               type="text"
-              placeholder="이름 입력 후 추가를 눌러주세요 "
+              placeholder="이름 입력 후 +를 눌러주세요 "
               value={name}
               onChange={handleNameChange}
             />
           </div>
-          <button type="submit">추가</button>
+          <button id="addBtn" type="submit">+</button>
         </form>
       </div>
     </div>
   );
 };
 
-module.exports = Modal;
+export default Modal;

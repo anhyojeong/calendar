@@ -1,8 +1,7 @@
 const React = require("react");
-const { useState, useEffect, useRef } = require("react");
-const Modal = require("./Modal");
+const { useState, useEffect, useRef , lazy, Suspense } = require("react");
+const Modal = lazy(() => import("./Modal"));
 const { LoadStorage } = require("../hooks/LoadStorage");
-
 require("../css/calendar.css");
 
 const Body = ({ currentDate }) => {
@@ -11,6 +10,7 @@ const Body = ({ currentDate }) => {
   const [startDay, setStartDay] = useState(null); //드래그 시작 날짜 저장
   const [isModalOpen, setIsModalOpen] = useState(false); //모달창
   const dragRef = useRef(null); //드래그할 요소 참조 저장
+  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 }); // 터치 시작 지점 저장
 
   const { data } = LoadStorage({
     initialDataKey: "userDataAndIndex",
@@ -53,6 +53,49 @@ const Body = ({ currentDate }) => {
   const remainingCells = 35 - (prevDays.length + currentDays.length);
   const nextDays = Array.from({ length: remainingCells }, (_, i) => i + 1); //다음 달 날짜들
 
+   // 터치 시작 
+   const handleTouchStart = (day, event) => {
+    setTouchStart({ x: event.touches[0].clientX, y: event.touches[0].clientY });
+    console.log("시작"+touchStart.x+":"+touchStart.y);
+    handleDragStart(day);
+  };
+
+  // 터치 중 
+  const handleTouchMove = (event) => {
+    const x = event.touches[0].clientX;
+    const y = event.touches[0].clientY;
+    const day = calculateDayFromTouch(x, y);
+    console.log("터치 중"+x+":"+y);
+
+    handleDrag(day);
+  };
+
+  // 터치 끝
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    setStartDay(null);
+
+    if (selectedDays.length > 0) {
+      setIsModalOpen(true);
+    }
+  };
+
+  // 터치된 날짜를 계산
+  const calculateDayFromTouch = (x, y) => {
+    const cell = document.querySelector(".days");
+    const cellWidth = cell.offsetWidth / 7; //7일
+    const cellHeight = cell.offsetHeight / 5; // 5주
+
+    const xOffset = x - cell.getBoundingClientRect().left;
+    const yOffset = y - cell.getBoundingClientRect().top;
+
+    const column = Math.floor(xOffset / cellWidth);
+    const row = Math.floor(yOffset / cellHeight);
+    const day = column + row * 7 + 1; // 7일, 일요일로 시작 
+ 
+    return day;
+  };
+  
   // 날짜를 클릭 했을 때
   const handleDayClick = (day, monthOffset) => {
     const selectedDate = new Date(
@@ -126,6 +169,9 @@ const Body = ({ currentDate }) => {
           onMouseDown={() => handleDragStart(day)}
           onMouseUp={handleDragStop}
           onMouseOver={() => handleDrag(day)}
+          onTouchStart={(event) => handleTouchStart(day, event)}
+      onTouchEnd={handleTouchEnd}
+      onTouchMove={handleTouchMove}
         >
           {day}
           {matchingUserDatas &&
@@ -157,11 +203,13 @@ const Body = ({ currentDate }) => {
         {renderDays(nextDays, 1)}
       </div>
       {isModalOpen && (
+         <Suspense fallback={<div>Loading...</div>}>
         <Modal
           closeModal={handleCloseModal}
           selectedDate={selectedDays}
           setNullSelectedDays={() => setSelectedDays([])}
         />
+        </Suspense>
       )}
     </div>
   );

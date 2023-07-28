@@ -5,7 +5,7 @@ const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports ={
-    name: 'wordrelay',
+    name: 'calendar',
     mode: 'development', //production
     devtool: 'eval',
 

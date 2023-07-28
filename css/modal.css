@@ -15,7 +15,10 @@
   --medium: 20px;
   --large: 24px;
 }
-
+*{
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  word-break: keep-all; /* 단어 단위로 끊지 않고 유지 */
+}
 .modalContainer {
   position: fixed;
   top: 0;
@@ -58,4 +61,29 @@
   border: 0;
   border-bottom: 0.2px solid var(--gray);
   text-align: center;
+}
+#addBtn{
+ border: none #0000;
+ border-radius: 50%;
+}
+
+@media screen and (max-width: 768px){
+  #modal{
+    width: 80%;
+  }
+  #modalForm{
+    margin-top: 0;
+  }
+  #modalNameArea{
+    display: flex;
+  }
+  #modalForm label {
+    padding-right: calc(var(--padding)/2);
+  }
+  #modal input{
+    width: 90%;
+  }
+  #addBtn{
+    border: none #0000;
+  }
 }
