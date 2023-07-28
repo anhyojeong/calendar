@@ -1,0 +1,212 @@
+:root {
+  /*색*/
+  --gray: rgb(114, 117, 117);
+
+  /*투명도*/
+  --opacity: 0.6;
+
+  /*크기*/
+  --margin: 24px;
+  --padding: 12px;
+
+  /*글자크기*/
+  --small: 15px;
+  --medium: 20px;
+  --large: 24px;
+}
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  user-select: none;
+}
+
+/*전체*/
+.calendar {
+  margin: 0 5%;
+  display: grid;
+  grid-template-columns: 3fr 1fr ;
+	grid-template-rows: repeat(2, 130px);
+  place-items: center;
+}
+
+/*달력 상단*/
+.header {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#yearArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: calc(var(--margin)/3);
+  font-size: var(--small);
+  color: var(--gray);
+}
+#yearArea span{
+  display: inline-block;
+  text-align: center;
+
+}
+#monthArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: calc(var(--margin)/3);
+  font-size: var(--medium);
+}
+
+#monthArea button {
+  display: inline-block;
+  margin: 0 var(--margin);
+  border: none;
+  background-color: white;
+}
+
+/*달력 본문*/
+.body {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 80%;
+  height: 60%;
+  text-align: center;
+}
+.weeks {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: var(--padding);
+  padding-top: 0;
+  border-bottom: 0.1px solid var(--gray);
+}
+
+.weeks span {
+  width: calc(100% / 7);
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  padding: var(--padding);
+
+  padding-top: calc(var(--padding) / 2);
+}
+
+.day {
+  width: calc(100% / 7);
+  padding-bottom: calc(var(--padding) * 3);
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.notCurrentDays {
+  color: var(--gray);
+  opacity: var(--opacity);
+}
+
+.selected {
+  background-color: rgb(245, 235, 186);
+}
+
+.line {
+  margin-bottom: 2px;
+  border-radius: 4px;
+}
+@media screen and (max-width: 768px){
+  .calendar{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 20%;
+  }
+  .header{
+    display: flex;
+  }
+  .weeks{
+    padding-top: var(--padding);
+  }
+  .day {
+    padding-bottom: calc(var(--padding) * 2);
+  }
+  #message{
+    text-align: center;
+  }
+  #clickedPersonSchedule{
+    display: grid;
+    grid-column: 1fr 1fr;
+    grid-row: auto;
+  }
+}
+:root {
+  /*색*/
+  --gray: rgb(114, 117, 117);
+
+  /*투명도*/
+  --opacity: 0.6;
+
+  /*크기*/
+  --margin: 24px;
+  --padding: 12px;
+
+  /*글자크기*/
+  --micro: 12px;
+  --small: 15px;
+  --medium: 20px;
+  --large: 24px;
+}
+
+/*이름 구역*/
+#savedPeopleContainer {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin:  calc(var(--margin) / 2) calc(var(--margin) / 2); 
+  height: 50px;
+}
+
+/*이름 리스트*/
+.savedPeopleNameList {
+  position: sticky;
+  top: 500px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+}
+.savedPeopleNameList span {
+  border-radius: 50%;
+  margin-right: calc(var(--margin) / 2);
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  word-break: keep-all; /* 단어 단위로 끊지 않고 유지 */
+}
+
+/*일정 구역*/
+.personScheduleContainer {
+  padding-left: var(--padding);
+}
+
+/*일정 주인*/
+#clickedPerson {
+  margin: calc(var(--margin) / 2) 0;
+}
+
+/*일정 리스트*/
+#clickedPersonSchedule {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+#removeBtn {
+  padding-left: var(--padding);
+}
+@media screen and (max-width: 768px){
+  .savedPeopleContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
