@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports ={
     name: 'calendar',
-    mode: 'development', //production
-    devtool: 'eval',
+    mode: 'production', //productiondevelopment
+    devtool: 'cheap-source-map',
 
     resolve:{
         extensions: ['.js' , '.jsx']
@@ -31,19 +31,21 @@ module.exports ={
                     '@babel/preset-react'],
                 plugins: [
                     '@babel/plugin-proposal-class-properties',
-                    'react-refresh/babel'
+                    //'react-refresh/babel'
                 ],
             },
             },
             {
                 test: /\.css$/,
-                use :['style-loader', 'css-loader'],
+                //use :['style-loader', 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
     },
     plugins:[
         new LoaderOptionsPlugin({debug:true}),
         new RefreshWebpackPlugin(),
+        new MiniCssExtractPlugin({ filename: 'app.css' }),
     ],
     output: {
         path: path.join(__dirname, 'dist'), //현재 폴더에 dist를 합쳐줌(node가)
