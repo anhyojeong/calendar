@@ -50,9 +50,9 @@ module.exports ={
           })
     ],
     output: {
-        path: path.join(__dirname, 'docs'), //현재 폴더에 dist를 합쳐줌(node가)
+        path: path.join(__dirname, 'docs'), //현재 폴더에 docs 합쳐줌(node가)
         filename: 'app.js',
-        publicPath: '/dist/',
+        publicPath: '/docs/',
     }, //출력
     devServer: {
         devMiddleware: { publicPath: '/dist' },
