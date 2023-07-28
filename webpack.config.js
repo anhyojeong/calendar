@@ -3,7 +3,6 @@ const { webpack } = require('webpack');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports ={
     name: 'calendar',
@@ -45,12 +44,9 @@ module.exports ={
     plugins:[
         new LoaderOptionsPlugin({debug:true}),
         new RefreshWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "./index.html") //template도 꼭 작성해야 함!!
-          })
     ],
     output: {
-        path: path.join(__dirname, 'docs'), //현재 폴더에 dist를 합쳐줌(node가)
+        path: path.join(__dirname, 'dist'), //현재 폴더에 dist를 합쳐줌(node가)
         filename: 'app.js',
         publicPath: '/dist/',
     }, //출력
