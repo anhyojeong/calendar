@@ -2022,7 +2022,7 @@ eval("/**\n * @typedef {Object} WDSMetaObj\n * @property {boolean} enforceWs\n *
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	(() => {
-/******/ 		__webpack_require__.p = "/dist/";
+/******/ 		__webpack_require__.p = "/docs/";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/react refresh */
