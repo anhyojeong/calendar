@@ -1,8 +1,7 @@
 const React = require("react");
-const { useState, useEffect, useRef } = require("react");
-const Modal = require("./Modal");
+const { useState, useEffect, useRef , lazy, Suspense } = require("react");
+const Modal = lazy(() => import("./Modal"));
 const { LoadStorage } = require("../hooks/LoadStorage");
-
 require("../css/calendar.css");
 
 const Body = ({ currentDate }) => {
@@ -204,11 +203,13 @@ const Body = ({ currentDate }) => {
         {renderDays(nextDays, 1)}
       </div>
       {isModalOpen && (
+         <Suspense fallback={<div>Loading...</div>}>
         <Modal
           closeModal={handleCloseModal}
           selectedDate={selectedDays}
           setNullSelectedDays={() => setSelectedDays([])}
         />
+        </Suspense>
       )}
     </div>
   );
