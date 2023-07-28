@@ -43,8 +43,8 @@ module.exports ={
         ],
     },
     plugins:[
-        new LoaderOptionsPlugin({debug:true}),
-        new RefreshWebpackPlugin(),
+        //new LoaderOptionsPlugin({debug:true}),
+        //new RefreshWebpackPlugin(),
         new MiniCssExtractPlugin({ filename: 'app.css' }),
     ],
     output: {
