@@ -57,4 +57,9 @@ module.exports ={
         static: { directory: path.resolve(__dirname) },
         hot: true
     },
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    },
 }
