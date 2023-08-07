@@ -10,6 +10,96 @@
   --padding: 12px;
 
   /*글자크기*/
+  --micro: 12px;
+  --small: 15px;
+  --medium: 20px;
+  --large: 24px;
+}
+*{
+  white-space: nowrap; /* 줄 바꿈 방지 */
+  word-break: keep-all; /* 단어 단위로 끊지 않고 유지 */
+}
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#modal {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+}
+#modalHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+#modalHead p {
+  margin-left: var(--margin);
+}
+#modalHead span {
+  margin: var(--margin);
+}
+#modalForm {
+  margin: var(--margin);
+  display: flex;
+  justify-content: space-around;
+}
+#modalForm label {
+  font-size: var(--small);
+  padding-right: var(--padding);
+}
+#modalForm input {
+  border: 0;
+  border-bottom: 0.2px solid var(--gray);
+  text-align: center;
+}
+#addBtn{
+ border: none #0000;
+ border-radius: 50%;
+}
+
+@media screen and (max-width: 768px){
+  #modal{
+    width: 80%;
+  }
+  #modalForm{
+    margin-top: 0;
+  }
+  #modalNameArea{
+    display: flex;
+  }
+  #modalForm label {
+    padding-right: calc(var(--padding)/2);
+  }
+  #modal input{
+    width: 90%;
+  }
+  #addBtn{
+    border: none #0000;
+  }
+}
+
+:root {
+  /*색*/
+  --gray: rgb(114, 117, 117);
+
+  /*투명도*/
+  --opacity: 0.6;
+
+  /*크기*/
+  --margin: 24px;
+  --padding: 12px;
+
+  /*글자크기*/
   --small: 15px;
   --medium: 20px;
   --large: 24px;
