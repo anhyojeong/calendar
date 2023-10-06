@@ -13,6 +13,7 @@
 2. 배포주소
 3. 구현
 4. 사용방법
+5. 개선점
 
 
 # 1. 개요 
@@ -27,9 +28,12 @@
   + 일정 추가
   + 일정 확인
   + 일정 삭제
+</br>
 
 # 2. 배포주소
 https://anhyojeong.github.io/calendar/
+
+</br>
 
 # 3. 구현
  ### 3-1. 일정 추가
@@ -48,8 +52,10 @@ https://velog.io/@hyozeong1230/%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%B6%94%EA%B0%80%EB
 ### 3-3. 일정 삭제
 - 로컬스토리지에서 일정삭제하기
 https://velog.io/@hyozeong1230/%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%9D%BC%EC%A0%95%EC%82%AD%EC%A0%9C%EB%A1%9C%EC%BB%AC%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80%EC%97%90%EC%84%9C-%EC%82%AD%EC%A0%9C%ED%95%98%EA%B8%B0
+</br>
 
 # 4. 사용방법
+
 ### 4-1. 일정 추가 방법
 ![달력 실행](https://github.com/anhyojeong/calendar/assets/87750523/fa77363b-e096-4299-bec1-022acfb0708b)
 
@@ -69,6 +75,10 @@ https://velog.io/@hyozeong1230/%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%9D%BC%EC%A0%95%EC
 일정 우측의 x를 누르면 해당 일정을 삭제할 수 있습니다.
 
    
+</br>
+
+# 5. 개선점
+- 일정 등록, 일정 삭제가 리로드 후 달력에 반영됨
 
 
 
