@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports ={
     name: 'calendar',
-    mode: 'production', //productiondevelopment
+    mode: 'development', //productiondevelopment
     devtool: 'cheap-source-map',
 
     resolve:{

@@ -1,8 +1,8 @@
 const React = require("react");
 const { useState, useEffect, useRef , lazy, Suspense } = require("react");
-const Modal = require("./Modal");
+//const Modal = require("./Modal");
 const Modal = lazy(() => import("./Modal"));
-//const { LoadStorage } = require("../hooks/LoadStorage");
+const { LoadStorage } = require("../hooks/LoadStorage");
 require("../css/calendar.css");
 
 const Body = ({ currentDate }) => {

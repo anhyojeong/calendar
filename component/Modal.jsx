@@ -1,11 +1,11 @@
-/* import React from "react";
+import React from "react";
 import {useState,useEffect } from "react";
 import { LoadStorage } from"../hooks/LoadStorage";
-import ("../css/modal.css"); */
-const React = require("react");
+import ("../css/modal.css"); 
+/*const React = require("react");
 const { useState, useEffect} = require("react");
 const { LoadStorage } = require("../hooks/LoadStorage");
-require("../css/modal.css");
+require("../css/modal.css");*/
 
 const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
   const [dates, setDates] = useState([]);
@@ -119,6 +119,6 @@ const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
   );
 };
 
-//export default Modal;
-module.exports = Modal;
+export default Modal;
+//module.exports = Modal;
 

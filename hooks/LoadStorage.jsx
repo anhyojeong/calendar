@@ -13,7 +13,6 @@ const LoadStorage = ({ initialDataKey }) => {
  
 
   const saveData = (newData) => {
-    console.log("saveData" +newData);
     setData((prevData) => ({ ...prevData, ...newData }));
     localStorage.setItem(
       initialDataKey,
