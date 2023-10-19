@@ -17,9 +17,9 @@ const Body = ({ currentDate }) => {
     initialDataKey: "userDataAndIndex",
   });
 
-  useEffect(() => {
-    setSelectedDays([]);
-  }, [currentDate]);
+  //useEffect(() => {
+  //  setSelectedDays([]);
+  //}, [currentDate]);
 
   //로컬스토리지에서 저장된 정보를 가져옴
   useEffect(() => {
@@ -171,8 +171,8 @@ const Body = ({ currentDate }) => {
           onMouseUp={handleDragStop}
           onMouseOver={() => handleDrag(day)}
           onTouchStart={(event) => handleTouchStart(day, event)}
-      onTouchEnd={handleTouchEnd}
-      onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
         >
           {day}
           {matchingUserDatas &&
@@ -209,6 +209,7 @@ const Body = ({ currentDate }) => {
           closeModal={handleCloseModal}
           selectedDate={selectedDays}
           setNullSelectedDays={() => setSelectedDays([])}
+          renderDays={renderDays}
         />
        </Suspense>
       )}

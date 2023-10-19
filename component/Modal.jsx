@@ -7,8 +7,8 @@ const { useState, useEffect} = require("react");
 const { LoadStorage } = require("../hooks/LoadStorage");
 require("../css/modal.css");*/
 
-const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
-  const [dates, setDates] = useState([]);
+const Modal = ({ closeModal, selectedDate, setNullSelectedDays,renderDays}) => {
+  //const [dates, setDates] = useState(selectedDate);
   const [name, setName] = useState("");
   const { data, saveData } = LoadStorage({
     initialDataKey: "userDataAndIndex",
@@ -27,11 +27,11 @@ const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
   ];
 
   //선택된 날짜
-  useEffect(() => {
-    if (selectedDate && selectedDate.length > 0) {
-      setDates([...selectedDate]);
-    }
-  }, [selectedDate]);
+  // useEffect(() => {
+  //   if (selectedDate && selectedDate.length > 0) {
+  //     setDates([...selectedDate]);
+  //   }
+  // }, [selectedDate]);
 
   // 날짜 포맷화 함수
   const formatDate = (dateString) => {
@@ -61,13 +61,13 @@ const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
       (person) => person.name === name
     );
     // 날짜를 UTC로 변환하여 저장
-    const utcDates = dates.map((date) => new Date(date).toISOString());
+    const utcDates = selectedDate.map((date) => new Date(date).toISOString());
 
     if (existingPersonIndex !== -1) {
       // 이름이 있으면 업데이트
       const updatedUserData = [...userData];
       const existingPerson = updatedUserData[existingPersonIndex];
-      existingPerson.date = [...existingPerson.date, ...dates]; //날짜 추가
+      existingPerson.date = [...existingPerson.date, ...selectedDate]; //날짜 추가 !!!!!!!!!!!!!!!!!!!!!
       saveData({ userData: updatedUserData });
     } else {
       // 이름이 없으면 새로운 객체 생성
@@ -84,6 +84,7 @@ const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
       });
     }
 
+    renderDays();
     closeModal();
     setNullSelectedDays();
   };
@@ -92,11 +93,11 @@ const Modal = ({ closeModal, selectedDate, setNullSelectedDays }) => {
     <div className="modalContainer">
       <div id="modal">
         <div id="modalHead">
-          {dates && dates.length === 1 ? (
-            <p>{formatDate(dates[0])}</p>
+          {selectedDate && selectedDate.length === 1 ? (  ///////////////!!!!!!!!!!!!!!!!!!
+            <p>{formatDate(selectedDate[0])}</p>
           ) : (
             <p>
-              {formatDate(dates[0])} ~ {formatDate(dates[dates.length - 1])}
+              {formatDate(selectedDate[0])} ~ {formatDate(selectedDate[selectedDate.length - 1])}
             </p>
           )}
           <span className="close" onClick={closeModal}>
