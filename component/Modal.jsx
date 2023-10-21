@@ -7,7 +7,7 @@ const { useState, useEffect} = require("react");
 const { LoadStorage } = require("../hooks/LoadStorage");
 require("../css/modal.css");*/
 
-const Modal = ({ closeModal, selectedDate, setNullSelectedDays,renderDays}) => {
+const Modal = ({ closeModal, selectedDate, setNullSelectedDays}) => {
   //const [dates, setDates] = useState(selectedDate);
   const [name, setName] = useState("");
   const { data, saveData } = LoadStorage({
@@ -84,7 +84,6 @@ const Modal = ({ closeModal, selectedDate, setNullSelectedDays,renderDays}) => {
       });
     }
 
-    renderDays();
     closeModal();
     setNullSelectedDays();
   };

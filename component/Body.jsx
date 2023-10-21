@@ -209,7 +209,6 @@ const Body = ({ currentDate }) => {
           closeModal={handleCloseModal}
           selectedDate={selectedDays}
           setNullSelectedDays={() => setSelectedDays([])}
-          renderDays={renderDays}
         />
        </Suspense>
       )}
