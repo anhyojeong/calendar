@@ -101,9 +101,6 @@ https://velog.io/@hyozeong1230/%EC%BA%98%EB%A6%B0%EB%8D%94-%EC%9D%BC%EC%A0%95%EC
 # 6. 개선점
 - 일정 등록, 일정 삭제가 리로드 후 반영됩니다. 
 - state를 전역으로 관리해 컴포넌트를 재렌더링 할 수 있도록 하는 것이 좋을 것 같습니다.
- 
-<iframe src="[https://www.notion.so/Your-Notion-Page-Link](https://hyozeong.notion.site/Calendar-04141a7cb69c4392abc0a6aa35c5bb0c?pvs=4)https://hyozeong.notion.site/Calendar-04141a7cb69c4392abc0a6aa35c5bb0c?pvs=4"></iframe>
-
 
 
 
